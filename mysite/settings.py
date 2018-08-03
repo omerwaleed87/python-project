@@ -38,9 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -119,3 +121,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Load server list and freeze
+# from connector import Server
+
+# def load_server_list():
+#     for s in SERVER_LIST:  # from CUSTOM_SETTINGS_MAPPINGS  # noqa
+#         server = (len(s) > 2) and unicode(s[2]) or None
+#         Server(host=unicode(s[0]), port=int(s[1]), server=server)
+#     Server.freeze()
+# load_server_list()
+
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000',
+)
